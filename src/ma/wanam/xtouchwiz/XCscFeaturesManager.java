@@ -27,6 +27,7 @@ import java.util.List;
 import ma.wanam.xtouchwiz.bean.FeatureDTO;
 import ma.wanam.xtouchwiz.utils.Constants;
 import ma.wanam.xtouchwiz.utils.Utils;
+import ma.wanam.xtouchwiz.utils.Utils.SuTask;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -40,6 +41,10 @@ import com.sec.android.app.CscFeature;
 public class XCscFeaturesManager {
 
 	private static ArrayList<FeatureDTO> defaultFeatureDTOs;
+	private static String version = "";
+	private static String country = "";
+	private static String countryISO = "";
+	private static String salesCode = "";
 
 	public static void applyCscFeatures(SharedPreferences prefs) {
 		StringBuffer features = new StringBuffer();
@@ -70,7 +75,12 @@ public class XCscFeaturesManager {
 				}
 			}
 
-			applyCSCFeatures(Constants.FEATURES_LIST_HEADER + features + Constants.FEATURES_LIST_FOOTER);
+			applyCSCFeatures(Constants.FEATURES_LIST_HEADER1 + (version.isEmpty() ? "ED0001" : version)
+					+ Constants.FEATURES_LIST_HEADER2 + (country.isEmpty() ? "UNITED KINGDOM" : country)
+					+ Constants.FEATURES_LIST_HEADER3 + (countryISO.isEmpty() ? "GB" : countryISO)
+					+ Constants.FEATURES_LIST_HEADER4 + (salesCode.isEmpty() ? "BTU" : salesCode)
+					+ Constants.FEATURES_LIST_HEADER5 + features + Constants.FEATURES_LIST_FOOTER);
+			new SuTask().execute("echo " + (salesCode.isEmpty() ? "BTU" : salesCode) + " > /system/csc/sales_code.dat");
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -236,7 +246,7 @@ public class XCscFeaturesManager {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			if (featureXML.exists()) {
+			if (featureXML.isFile()) {
 				try {
 					Utils.applyCSCFeatues(MainApplication.getAppContext());
 				} catch (Throwable e) {
@@ -259,6 +269,11 @@ public class XCscFeaturesManager {
 			Field fieldFeatureList = null;
 
 			mCscFeature = CscFeature.getInstance();
+
+			version = mCscFeature.getString("Version");
+			country = mCscFeature.getString("Country");
+			countryISO = mCscFeature.getString("CountryISO");
+			salesCode = mCscFeature.getString("SalesCode");
 
 			String[] classes = MainApplication.getAppContext().getResources().getStringArray(R.array.categories_list);
 
@@ -315,7 +330,7 @@ public class XCscFeaturesManager {
 		try {
 
 			for (String cscFile : files) {
-				if (new File(cscFile).exists()) {
+				if (new File(cscFile).isFile()) {
 					try {
 						factory = XmlPullParserFactory.newInstance();
 						p = factory.newPullParser();

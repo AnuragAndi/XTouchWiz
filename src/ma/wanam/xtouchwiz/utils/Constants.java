@@ -27,7 +27,7 @@ public class Constants {
 	public static final String SYSTEM_CSC_FEATURE_BKP = "/system/csc/feature.xml.bak";
 	public static final String SYSTEM_OTHER_FEATURE_BKP = "/system/csc/others.xml.bak";
 	public static final String SYSTEM_CSC_FEATURE_DIR = "/system/csc/";
-	public static final String FEATURES_LIST_HEADER = "<?xml  version=\"1.0\" encoding=\"UTF-8\" ?>\n"
+	public static final String FEATURES_LIST_HEADER1 = "<?xml  version=\"1.0\" encoding=\"UTF-8\" ?>\n"
 			+ "<!-- It can be added for each operators like below form\n" +
 
 			"<ABC>                       -> sales code\n" + "<sapient>true</sapient>         -> feature1\n"
@@ -39,7 +39,11 @@ public class Constants {
 			+ "also, should be added between <FeatureSet>\n" + " and </FeatureSet> .\n" + "jhwan.kim@hdlnc.com\n"
 			+ "by Wanam  -->\n" + "<SamsungMobileFeature>\n\n" +
 
-			"<Country></Country>\n" + "<CountryISO></CountryISO>\n" + "<SalesCode></SalesCode>\n\n" +
+			"<Version>";
+	public static final String FEATURES_LIST_HEADER2 = "</Version>\n" + "<Country>";
+	public static final String FEATURES_LIST_HEADER3 = "</Country>\n" + "<CountryISO>";
+	public static final String FEATURES_LIST_HEADER4 = "</CountryISO>\n" + "<SalesCode>";
+	public static final String FEATURES_LIST_HEADER5 = "</SalesCode>\n\n" +
 
 			"<!-- KOR -->\n" + "<FeatureSet>\n";
 	public static final String FEATURES_LIST_FOOTER = "</FeatureSet>\n" + "</SamsungMobileFeature>";

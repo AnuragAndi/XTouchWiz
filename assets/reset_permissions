@@ -8,6 +8,7 @@ chmod 0644 /system/csc/feature.xml
 chmod 0644 /system/csc/feature.xml.bak
 chmod 0644 /system/csc/others.xml
 chmod 0644 /system/csc/others.xml.bak
+chmod 0644 /system/csc/sales_code.dat
 chmod 0755 /system/csc
 
 mount -o ro,remount /system
