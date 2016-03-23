@@ -75,9 +75,6 @@
     <string name="auto_expand_volume_panel_sum">Expand volume panel automatically on volume change</string>
     <string name="root_info">Root access NOT granted!\n\nSome features requires Root access to work properly.</string>
     <string name="ok_btn">OK</string>
-    <string name="launcher_page_rotation_enabled">Launcher infinite home page scroll enabled</string>
-    <string name="launcher_page_rotation_disabled">Launcher infinite home page scroll disabled</string>
-    <string name="disable_launcher_page_rotation">Launcher infinite scroll</string>
     <string name="no_terminate_button_on_the_browser_menu">No Exit button on the browser menu</string>
     <string name="terminate_button_added_to_the_browser_menu">Exit button added to the browser menu</string>
     <string name="add_terminate_button_to_the_browser">Add Exit button to browser menu</string>

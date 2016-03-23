@@ -158,12 +158,6 @@ public class XCscFeaturesManager {
 		}
 		featuresDTOList.add(new FeatureDTO("CscFeature_Message_MaxRecipientLengthAs", "999"));
 
-		// Launcher Page Rotation
-		if (prefs.getBoolean("disableLauncherPageRotation", false))
-			featuresDTOList.add(new FeatureDTO("CscFeature_Launcher_DisablePageRotation", "TRUE"));
-		else
-			featuresDTOList.add(new FeatureDTO("CscFeature_Launcher_DisablePageRotation", "FALSE"));
-
 		// Browser Terminate button
 		if (prefs.getBoolean("addBrowserTerminateButton", false))
 			featuresDTOList.add(new FeatureDTO("CscFeature_Web_AddOptionToTerminate", "TRUE"));
