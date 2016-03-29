@@ -233,4 +233,7 @@
 <string name="enable_save_and_restore">Enable save and restore</string>
     <string name="enable_the_menu_to_save_and_restore_messages">Enable the menu to save and restore messages from SdCard</string>
 
+<string name="disable_adb_on_secured_lock">Disable Adb on secured lock</string>
+    <string name="disable_adb_connection_during_secured_lockscreen">Disable Adb connection during secured lockscreen</string>
+
 </resources>

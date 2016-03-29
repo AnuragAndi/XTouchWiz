@@ -199,6 +199,12 @@ public class XCscFeaturesManager {
 		else
 			featuresDTOList.add(new FeatureDTO("CscFeature_Common_DisablePhoneNumberFormatting", "FALSE"));
 
+		// Lockscreen
+		if (prefs.getBoolean("disableLockedAdb", false))
+			featuresDTOList.add(new FeatureDTO("CscFeature_LockScreen_DisableADBConnDuringSecuredLock", "TRUE"));
+		else
+			featuresDTOList.add(new FeatureDTO("CscFeature_LockScreen_DisableADBConnDuringSecuredLock", "FALSE"));
+
 		// Camera
 		if (prefs.getBoolean("enableCameraDuringCall", false))
 			featuresDTOList.add(new FeatureDTO("CscFeature_Camera_EnableCameraDuringCall", "TRUE"));
