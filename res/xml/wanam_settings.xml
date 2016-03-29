@@ -203,12 +203,13 @@
                 android:title="@string/reboot_confirmation" />
             <CheckBoxPreference
                 android:defaultValue="false"
+                android:dependency="enable4WayReboot"
                 android:key="mScreenshot"
                 android:summary="@string/add_screenshot_to_power_menu"
                 android:title="@string/screenshot" />
             <CheckBoxPreference
                 android:defaultValue="false"
-                android:dependency="expandNotifications"
+                android:dependency="enable4WayReboot"
                 android:key="mScreenrecord"
                 android:summary="@string/add_screen_record_to_power_menu"
                 android:title="@string/screen_record" />

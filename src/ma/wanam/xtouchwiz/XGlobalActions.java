@@ -89,6 +89,9 @@ public class XGlobalActions {
 			mScreenrecord = prefs.getBoolean("mScreenrecord", true);
 			enable4WayReboot = prefs.getBoolean("enable4WayReboot", true);
 
+			if (!enable4WayReboot)
+				return;
+
 			final Class<?> globalActionsClass = XposedHelpers.findClass(CLASS_GLOBAL_ACTIONS, classLoader);
 			final Class<?> actionClass = XposedHelpers.findClass(CLASS_ACTION, classLoader);
 
