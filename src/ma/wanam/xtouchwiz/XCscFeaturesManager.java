@@ -159,6 +159,11 @@ public class XCscFeaturesManager {
 		else
 			featuresDTOList.add(new FeatureDTO("CscFeature_RIL_ForceConnectMMS", "FALSE"));
 
+		if (prefs.getBoolean("enableSaveRestore", true))
+			featuresDTOList.add(new FeatureDTO("CscFeature_Message_EnableSaveRestoreSDCard", "TRUE"));
+		else
+			featuresDTOList.add(new FeatureDTO("CscFeature_Message_EnableSaveRestoreSDCard", "FALSE"));
+
 		if (prefs.getBoolean("disableSmsToMmsConversion", false)) {
 			featuresDTOList.add(new FeatureDTO("CscFeature_Message_DisableSmsToMmsConversionByTextInput", "TRUE"));
 			featuresDTOList.add(new FeatureDTO("CscFeature_Message_SmsMaxByte", "999"));

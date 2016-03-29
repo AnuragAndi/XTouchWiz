@@ -230,4 +230,7 @@
     <string name="enable4wayreboot">Enable advanced power menu</string>
     <string name="advanced_power_menu">Power menu</string>
 
+<string name="enable_save_and_restore">Enable save and restore</string>
+    <string name="enable_the_menu_to_save_and_restore_messages">Enable the menu to save and restore messages from SdCard</string>
+
 </resources>

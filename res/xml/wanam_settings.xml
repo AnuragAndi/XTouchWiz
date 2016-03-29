@@ -402,6 +402,11 @@
         android:title="@string/messaging" >
         <PreferenceCategory android:title="@string/messaging" >
             <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="enableSaveRestore"
+                android:summary="@string/enable_the_menu_to_save_and_restore_messages"
+                android:title="@string/enable_save_and_restore" />
+            <CheckBoxPreference
                 android:defaultValue="false"
                 android:key="disableSmsToMmsConversion"
                 android:summaryOff="@string/mms_sms_mms_conversion_off"
