@@ -40,23 +40,12 @@ public class XPM23 {
 					boolean.class, String.class, new XC_MethodHook() {
 						@Override
 						protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-							final Object extras = XposedHelpers.getObjectField(param.args[0], "mExtras");
-							if (extras == null)
-								return;
-							final Object ps = XposedHelpers.callMethod(extras, "getPermissionsState");
-							if (ps == null)
-								return;
-							final Object settings = XposedHelpers.getObjectField(param.thisObject, "mSettings");
-							if (settings == null)
-								return;
-							final Object permissions = XposedHelpers.getObjectField(settings, "mPermissions");
-							if (permissions == null)
-								return;
-
 							final String pkgName = (String) XposedHelpers.getObjectField(param.args[0], "packageName");
-
 							if (Packages.XTOUCHWIZ.equals(pkgName)) {
+							final Object extras = XposedHelpers.getObjectField(param.args[0], "mExtras");
+							final Object ps = XposedHelpers.callMethod(extras, "getPermissionsState");
+							final Object settings = XposedHelpers.getObjectField(param.thisObject, "mSettings");
+							final Object permissions = XposedHelpers.getObjectField(settings, "mPermissions");
 
 								if (!(Boolean) XposedHelpers.callMethod(ps, "hasInstallPermission", REBOOT)) {
 									final Object pAccess = XposedHelpers.callMethod(permissions, "get", REBOOT);

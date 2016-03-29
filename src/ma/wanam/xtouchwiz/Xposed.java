@@ -100,6 +100,13 @@ public class Xposed implements IXposedHookZygoteInit, IXposedHookInitPackageReso
 				XposedBridge.log(e.toString());
 
 			}
+
+			try {
+				XGlobalActions.init(prefs, lpparam.classLoader);
+			} catch (Throwable e) {
+				XposedBridge.log(e.toString());
+
+			}
 		}
 
 		if (lpparam.packageName.equals(Packages.PHONE)) {

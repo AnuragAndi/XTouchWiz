@@ -187,6 +187,32 @@
         android:icon="@drawable/system"
         android:key="systemKey"
         android:title="@string/system" >
+        <PreferenceCategory
+            android:key="powerMenuKey"
+            android:title="@string/advanced_power_menu" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="enable4WayReboot"
+                android:summary="@string/enable4wayreboot"
+                android:title="@string/enable4wayreboot" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="enable4WayReboot"
+                android:key="mRebootConfirmRequired"
+                android:summary="@string/reboot_requires_confirmation"
+                android:title="@string/reboot_confirmation" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="mScreenshot"
+                android:summary="@string/add_screenshot_to_power_menu"
+                android:title="@string/screenshot" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="expandNotifications"
+                android:key="mScreenrecord"
+                android:summary="@string/add_screen_record_to_power_menu"
+                android:title="@string/screen_record" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/system" >
             <CheckBoxPreference
                 android:defaultValue="false"

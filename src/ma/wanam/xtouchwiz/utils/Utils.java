@@ -42,6 +42,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.XposedBridge;
 import eu.chainfire.libsuperuser.Shell.SU;
 
 public class Utils {
@@ -104,8 +105,9 @@ public class Utils {
 				try {
 					final PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 					pm.reboot(rebootType);
+
 				} catch (Throwable e) {
-					new SuTask().execute((rebootType == null ? "reboot" : "reboot " + rebootType));
+					XposedBridge.log(e);
 				}
 			}
 		}, 500);

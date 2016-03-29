@@ -210,4 +210,24 @@
     <string name="semi_transparent_volume_panel">Semi-transparent volume panel</string>
     <string name="reduce_volume_panel_opacity">Reduce volume panel opacity while changing sound volume</string>
 
+<string name="reboot_confirm">Your device will reboot.</string>
+    <string name="reboot_confirm_recovery">Your device will reboot into recovery.</string>
+    <string name="reboot_confirm_bootloader">Your device will reboot into bootloader.</string>
+    <string name="action_screenrecord">Screen record</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="screenrecord_notif_ticker">Screen is being recorded</string>
+    <string name="screenrecord_notif_title">Recording screen</string>
+    <string name="screenrecord_notif_stop">Stop</string>
+    <string name="screenrecord_toast_error">Unable to record screen</string>
+    <string name="screenrecord_toast_processing">Cannot start new recording as previous recording is still being processed</string>
+    <string name="screenrecord_toast_saved">Recording saved as %s</string>
+    <string name="screenrecord_toast_save_error">Unable to save recording to output file</string>
+    <string name="reboot_confirmation">Reboot confirmation</string>
+    <string name="reboot_requires_confirmation">Reboot requires confirmation</string>
+    <string name="add_screenshot_to_power_menu">Add Screenshot to power menu</string>
+    <string name="screen_record">Screen Record</string>
+    <string name="add_screen_record_to_power_menu">Add Screen Record to power menu (Make sure expanded notifications feature is enabled and Busybox installed!)</string>
+    <string name="enable4wayreboot">Enable advanced power menu</string>
+    <string name="advanced_power_menu">Power menu</string>
+
 </resources>

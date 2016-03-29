@@ -72,6 +72,14 @@
             android:label="@string/rebooting_"
             android:theme="@android:style/Theme.DeviceDefault.Dialog" >
         </activity>
+        
+                <service
+            android:name="ma.wanam.xtouchwiz.services.ScreenRecordingService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="xtouchwiz.intent.action.RECORDING_START" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

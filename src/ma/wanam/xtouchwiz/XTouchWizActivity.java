@@ -33,6 +33,7 @@ import ma.wanam.xtouchwiz.dialogs.RestoreDialog.RestoreDialogListener;
 import ma.wanam.xtouchwiz.dialogs.SaveDialog;
 import ma.wanam.xtouchwiz.notifications.RebootNotification;
 import ma.wanam.xtouchwiz.utils.Utils;
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,6 +45,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
@@ -59,6 +61,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
@@ -73,13 +76,31 @@ public class XTouchWizActivity extends Activity implements RestoreDialogListener
 	private static final String[] defaultSettings = new String[] { "addBrowserTerminateButton",
 			"enableCameraDuringCall", "disableNumberFormating", "enableCallButtonLogs", "disableSmsToMmsConversion",
 			"isXTouvhWizFirstLaunch", "expandNotifications", "makeMeTooLegit", "disableTIMA", "showDataUsuage",
-			"autoExpandVolumePanel", "semiTransparentVolumePanel" };
+			"autoExpandVolumePanel", "semiTransparentVolumePanel", "enable4WayReboot", "mScreenshot", "mScreenrecord" };
+
+	// Storage Permissions
+	private static final int REQUEST_EXTERNAL_STORAGE = 1;
+	private static String[] PERMISSIONS_STORAGE = { Manifest.permission.READ_EXTERNAL_STORAGE,
+			Manifest.permission.WRITE_EXTERNAL_STORAGE };
+
+	public static void verifyStoragePermissions(Activity activity) {
+		// Check if we have write permission
+		int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+		if (permission != PackageManager.PERMISSION_GRANTED) {
+			// We don't have permission so prompt the user
+			ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+		}
+	}
 
 	@SuppressLint("WorldReadableFiles")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+
+		verifyStoragePermissions(this);
+
 		initScreen();
 		setContentView(R.layout.wanam_main);
 
