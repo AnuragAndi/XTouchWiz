@@ -35,11 +35,15 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.SystemProperties;
 
 import com.sec.android.app.CscFeature;
 
 public class XCscFeaturesManager {
 
+	private static final String RO_BUILD_PDA = "ro.build.PDA";
+	private static final String SYSTEM_CSC_SALES_CODE_DAT = "/system/csc/sales_code.dat";
+	private static final String SYSTEM_CSC_VERSION_TXT = "/system/CSCVersion.txt";
 	private static ArrayList<FeatureDTO> defaultFeatureDTOs;
 	private static String version = "";
 	private static String country = "";
@@ -80,7 +84,14 @@ public class XCscFeaturesManager {
 					+ Constants.FEATURES_LIST_HEADER3 + (countryISO.isEmpty() ? "GB" : countryISO)
 					+ Constants.FEATURES_LIST_HEADER4 + (salesCode.isEmpty() ? "BTU" : salesCode)
 					+ Constants.FEATURES_LIST_HEADER5 + features + Constants.FEATURES_LIST_FOOTER);
-			new SuTask().execute("echo " + (salesCode.isEmpty() ? "BTU" : salesCode) + " > /system/csc/sales_code.dat");
+			new SuTask().execute("echo " + (salesCode.isEmpty() ? "BTU" : salesCode) + " > "
+					+ SYSTEM_CSC_SALES_CODE_DAT);
+
+			String pda = SystemProperties.get(RO_BUILD_PDA);
+			if (!pda.isEmpty() && !(new File(SYSTEM_CSC_VERSION_TXT).exists())) {
+				new SuTask().execute("echo " + pda + " > " + SYSTEM_CSC_VERSION_TXT);
+			}
+
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

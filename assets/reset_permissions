@@ -10,6 +10,7 @@ chmod 0644 /system/csc/others.xml
 chmod 0644 /system/csc/others.xml.bak
 chmod 0644 /system/csc/sales_code.dat
 chmod 0755 /system/csc
+chmod 0644 /system/CSCVersion.txt
 
 mount -o ro,remount /system
 mount -t rootfs -o remount,ro rootfs
