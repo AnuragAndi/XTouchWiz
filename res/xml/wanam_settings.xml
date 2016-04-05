@@ -145,7 +145,7 @@
         android:title="@string/sound" >
         <PreferenceCategory android:title="@string/sound" >
             <CheckBoxPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="disableLoudVolumeWarning"
                 android:summaryOff="@string/disable_loud_volume_enabled"
                 android:summaryOn="@string/disable_loud_volume_disabled"
@@ -304,7 +304,7 @@
                 android:summaryOff="@string/launcher_scroll_wallpaper_off"
                 android:summaryOn="@string/launcher_scroll_wallpaper_on"
                 android:title="@string/launcher_scroll_wallpaper" />
-            </PreferenceCategory>
+        </PreferenceCategory>
         <PreferenceCategory
             android:key="homebuttons"
             android:title="@string/buttons" >

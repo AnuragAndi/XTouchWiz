@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 
 import com.samsung.android.multiwindow.MultiWindowStyle;
@@ -48,100 +49,12 @@ public class XSysUIFeaturePackage {
 		if (!prefs.getString("selectedMwApps", "").trim().equalsIgnoreCase("")) {
 			setMWApps(prefs, classLoader);
 		}
-		Class<?> classFeature = XposedHelpers.findClass(Packages.SYSTEM_UI + ".statusbar.Feature", classLoader);
-
-		try {
-			setExpandedVolumePanel(classLoader);
-		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowDataUsageInQuickPanel",
-					prefs.getBoolean("showDataUsuage", false));
-		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowDataUsageLimitForVZW",
-					prefs.getBoolean("showDataUsuage", false));
-		} catch (Throwable e) {
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowWirelessChargerInfoPopUp",
-					prefs.getBoolean("showWirelessChargerInfoPopUp", false));
-		} catch (Throwable e) {
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowMobileDataOffPopup",
-					prefs.getBoolean("showDataPopUp", false));
-		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowMobileDataPopupForLgt",
-					prefs.getBoolean("showDataPopUp", false));
-		} catch (Throwable e) {
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowMobileDataPopupForVZW",
-					prefs.getBoolean("showDataPopUp", false));
-		} catch (Throwable e) {
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowNoSimNotification",
-					prefs.getBoolean("showNOSim", false));
-		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mNoSIMNotificationForTMO",
-					prefs.getBoolean("showNOSim", false));
-		} catch (Throwable e) {
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mNoSIMNotificationForVZW",
-					prefs.getBoolean("showNOSim", false));
-		} catch (Throwable e) {
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mUseLTEDataIcon",
-					!prefs.getBoolean("show4GForLTE", false));
-		} catch (Throwable e) {
-
-		}
-
-		try {
-			XposedHelpers.setStaticBooleanField(classFeature, "mShowAirplaneModeONPopup",
-					!prefs.getBoolean("disableAirplaneModeDialog", false));
-		} catch (Throwable e) {
-
-		}
 
 		if (prefs.getBoolean("expandNotifications", false)) {
 			try {
 				expandAllNotifications(classLoader);
 			} catch (Throwable e) {
-				XposedBridge.log(e.toString());
+				XposedBridge.log(e);
 
 			}
 		}
@@ -150,9 +63,102 @@ public class XSysUIFeaturePackage {
 			try {
 				enableQuickUnlock(prefs, classLoader);
 			} catch (Throwable e) {
-				XposedBridge.log(e.toString());
+				XposedBridge.log(e);
 
 			}
+		}
+
+		try {
+			setExpandedVolumePanel(classLoader);
+		} catch (Throwable e) {
+			XposedBridge.log(e);
+
+		}
+
+		try {
+			Class<?> classFeature = XposedHelpers.findClass(Packages.SYSTEM_UI + ".statusbar.Feature", classLoader);
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowDataUsageInQuickPanel",
+						prefs.getBoolean("showDataUsuage", false));
+			} catch (Throwable e) {
+				XposedBridge.log(e);
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowDataUsageLimitForVZW",
+						prefs.getBoolean("showDataUsuage", false));
+			} catch (Throwable e) {
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowWirelessChargerInfoPopUp",
+						prefs.getBoolean("showWirelessChargerInfoPopUp", false));
+			} catch (Throwable e) {
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowMobileDataOffPopup",
+						prefs.getBoolean("showDataPopUp", false));
+			} catch (Throwable e) {
+				XposedBridge.log(e);
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowMobileDataPopupForLgt",
+						prefs.getBoolean("showDataPopUp", false));
+			} catch (Throwable e) {
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowMobileDataPopupForVZW",
+						prefs.getBoolean("showDataPopUp", false));
+			} catch (Throwable e) {
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowNoSimNotification",
+						prefs.getBoolean("showNOSim", false));
+			} catch (Throwable e) {
+				XposedBridge.log(e);
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mNoSIMNotificationForTMO",
+						prefs.getBoolean("showNOSim", false));
+			} catch (Throwable e) {
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mNoSIMNotificationForVZW",
+						prefs.getBoolean("showNOSim", false));
+			} catch (Throwable e) {
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mUseLTEDataIcon",
+						!prefs.getBoolean("show4GForLTE", false));
+			} catch (Throwable e) {
+
+			}
+
+			try {
+				XposedHelpers.setStaticBooleanField(classFeature, "mShowAirplaneModeONPopup",
+						!prefs.getBoolean("disableAirplaneModeDialog", false));
+			} catch (Throwable e) {
+
+			}
+		} catch (Throwable e1) {
+			XposedBridge.log(e1.getMessage());
 		}
 
 	}
@@ -198,7 +204,7 @@ public class XSysUIFeaturePackage {
 					"isSupportMultiWindow", ActivityInfo.class, MultiWindowStyle.class,
 					XC_MethodReplacement.returnConstant(true));
 		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
+			XposedBridge.log(e);
 
 		}
 
@@ -247,17 +253,74 @@ public class XSysUIFeaturePackage {
 					});
 
 		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
+			XposedBridge.log(e);
 
 		}
 	}
 
 	private static void setExpandedVolumePanel(ClassLoader classLoader) {
-		try {
-			final Class<?> VolumePanel = XposedHelpers.findClass(Packages.SYSTEM_UI + ".volume.SecVolumeDialog",
-					classLoader);
 
-			XposedHelpers.findAndHookMethod(VolumePanel, "showH", int.class, new XC_MethodHook() {
+		Class<?> mVolumePanel = null;
+		try {
+			// Try stock Samsung implementation
+			mVolumePanel = XposedHelpers.findClass(Packages.SYSTEM_UI + ".volume.SecVolumeDialog", classLoader);
+			try {
+				XposedHelpers.findAndHookMethod(mVolumePanel, "updateTintColor", new XC_MethodHook() {
+					@Override
+					protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+						XSysUIFeaturePackage.prefs.reload();
+						if (XSysUIFeaturePackage.prefs.getBoolean("semiTransparentVolumePanel", false)) {
+							XposedHelpers.setObjectField(
+									param.thisObject,
+									"mVolumePanelBgColor",
+									XposedHelpers.callMethod(param.thisObject, "colorToColorStateList",
+											Color.parseColor("#7fffffff")));
+						}
+
+					}
+
+				});
+
+			} catch (Throwable e) {
+
+			}
+		} catch (Throwable e) {
+
+			// Try Good lock implementation
+			try {
+				mVolumePanel = XposedHelpers.findClass(Packages.SYSTEM_UI + ".volume.VolumeDialog", classLoader);
+				final Class<?> mUtils = XposedHelpers.findClass(Packages.SYSTEM_UI + ".opensesame.utils.Utils",
+						classLoader);
+				final Class<?> mVolumeRow = XposedHelpers.findClass(Packages.SYSTEM_UI
+						+ ".volume.VolumeDialog$VolumeRow", classLoader);
+
+				XposedHelpers.findAndHookMethod(mVolumePanel, "updateVolumeRowSliderTintH", mVolumeRow, boolean.class,
+						new XC_MethodHook() {
+							@Override
+							protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+
+								XSysUIFeaturePackage.prefs.reload();
+								if (XSysUIFeaturePackage.prefs.getBoolean("semiTransparentVolumePanel", false)) {
+
+									ColorStateList csl = (ColorStateList) XposedHelpers.callStaticMethod(mUtils,
+											"colorToColorStateList", Color.parseColor("#7fffffff"));
+
+									Object mDialogView = XposedHelpers.getObjectField(param.thisObject, "mDialogView");
+									XposedHelpers.callMethod(mDialogView, "setBackgroundTintList", csl);
+								}
+
+							}
+
+						});
+
+			} catch (Throwable t) {
+				XposedBridge.log(t.getMessage());
+			}
+		}
+
+		try {
+			XposedHelpers.findAndHookMethod(mVolumePanel, "showH", int.class, new XC_MethodHook() {
 				@Override
 				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 					XSysUIFeaturePackage.prefs.reload();
@@ -268,33 +331,7 @@ public class XSysUIFeaturePackage {
 			});
 
 		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
-
-		}
-
-		try {
-			final Class<?> VolumePanel = XposedHelpers.findClass(Packages.SYSTEM_UI + ".volume.SecVolumeDialog",
-					classLoader);
-
-			XposedHelpers.findAndHookMethod(VolumePanel, "updateTintColor", new XC_MethodHook() {
-				@Override
-				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-					XSysUIFeaturePackage.prefs.reload();
-					if (XSysUIFeaturePackage.prefs.getBoolean("semiTransparentVolumePanel", false)) {
-						XposedHelpers.setObjectField(
-								param.thisObject,
-								"mVolumePanelBgColor",
-								XposedHelpers.callMethod(param.thisObject, "colorToColorStateList",
-										Color.parseColor("#7fffffff")));
-					}
-
-				}
-
-			});
-
-		} catch (Throwable e) {
-			XposedBridge.log(e.toString());
+			XposedBridge.log(e);
 
 		}
 

@@ -76,7 +76,8 @@ public class XTouchWizActivity extends Activity implements RestoreDialogListener
 	private static final String[] defaultSettings = new String[] { "addBrowserTerminateButton",
 			"enableCameraDuringCall", "disableNumberFormating", "enableCallButtonLogs", "disableSmsToMmsConversion",
 			"isXTouvhWizFirstLaunch", "expandNotifications", "makeMeTooLegit", "disableTIMA", "showDataUsuage",
-			"autoExpandVolumePanel", "semiTransparentVolumePanel", "enable4WayReboot", "mScreenshot", "mScreenrecord" };
+			"autoExpandVolumePanel", "semiTransparentVolumePanel", "enable4WayReboot", "mScreenshot", "mScreenrecord",
+			"disableLoudVolumeWarning" };
 
 	// Storage Permissions
 	private static final int REQUEST_EXTERNAL_STORAGE = 1;

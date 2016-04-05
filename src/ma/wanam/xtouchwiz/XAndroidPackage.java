@@ -56,7 +56,7 @@ public class XAndroidPackage {
 				e.printStackTrace();
 			}
 
-		if (prefs.getBoolean("disableLoudVolumeWarning", false)) {
+		if (prefs.getBoolean("disableLoudVolumeWarning", true)) {
 			try {
 				disableLoudVolumeWarningDialog();
 			} catch (Throwable e) {

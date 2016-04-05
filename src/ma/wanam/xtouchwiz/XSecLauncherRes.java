@@ -34,15 +34,6 @@ public class XSecLauncherRes {
 
 		}
 
-		if (prefs.getBoolean("hideDockLabels", false)) {
-			try {
-				resparam.res.setReplacement(Packages.LAUNCHER, "bool", "hotseat_showTitlePermKey", false);
-			} catch (Throwable e) {
-				XposedBridge.log(e.toString());
-
-			}
-		}
-
 	}
 
 }
