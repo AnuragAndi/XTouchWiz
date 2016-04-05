@@ -99,25 +99,9 @@ public class XAndroidPackage {
 
 	private static void disableTIMA() {
 		final Class<?> mTimaService = XposedHelpers.findClass("com.android.server.TimaService", classLoader);
-		final Class<?> mTimaHelper = XposedHelpers.findClass("com.android.server.pm.TimaHelper", classLoader);
 
 		XposedHelpers.findAndHookMethod(mTimaService, "checkEvent", int.class, int.class,
 				XC_MethodReplacement.returnConstant(null));
-		XposedHelpers.findAndHookMethod(mTimaService, "checkHistory", int.class, int.class,
-				XC_MethodReplacement.returnConstant(null));
-
-		XposedHelpers.findAndHookMethod(mTimaService, "isKapEnforced", XC_MethodReplacement.returnConstant(false));
-
-		XposedHelpers.findAndHookMethod(mTimaService, "get_tima_Version", XC_MethodReplacement.returnConstant("NONE"));
-		XposedHelpers.findAndHookMethod(mTimaHelper, "initTimaHelper", new XC_MethodReplacement() {
-
-			@Override
-			protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-				XposedHelpers.setObjectField(param.thisObject, "mVersion", "NONE");
-				XposedHelpers.setObjectField(param.thisObject, "mTksName", "NONE");
-				return null;
-			}
-		});
 	}
 
 	private static void disableHomeWake() {
