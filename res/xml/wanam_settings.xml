@@ -304,13 +304,7 @@
                 android:summaryOff="@string/launcher_scroll_wallpaper_off"
                 android:summaryOn="@string/launcher_scroll_wallpaper_on"
                 android:title="@string/launcher_scroll_wallpaper" />
-            <CheckBoxPreference
-                android:defaultValue="false"
-                android:key="hideDockLabels"
-                android:summaryOff="@string/dock_app_labels_are_shown"
-                android:summaryOn="@string/dock_app_labels_are_hidden"
-                android:title="@string/hide_dock_app_labels" />
-        </PreferenceCategory>
+            </PreferenceCategory>
         <PreferenceCategory
             android:key="homebuttons"
             android:title="@string/buttons" >

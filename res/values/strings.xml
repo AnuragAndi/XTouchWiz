@@ -161,9 +161,6 @@
     <string name="launcher_scroll_wallpaper">Wallpaper scrolling</string>
     <string name="launcher_scroll_wallpaper_off">Wallpaper will not scroll with pages</string>
     <string name="launcher_scroll_wallpaper_on">Wallpaper will scroll with pages</string>
-    <string name="hide_dock_app_labels">Hide dock app labels</string>
-    <string name="dock_app_labels_are_hidden">Dock app labels are hidden</string>
-    <string name="dock_app_labels_are_shown">Dock app labels are shown</string>
     <string name="quick_pin_unlock">Enable quick PIN unlock</string>
     <string name="quick_pin_unlock_summary">"Use with caution! Make sure you set the correct PIN size"</string>
     <string name="camera_low_battery_warning_enabled">Camera low battery warning enabled</string>
@@ -209,8 +206,7 @@
     <string name="show_wireless_charger_information_popup">Show Wireless charger information popup</string>
     <string name="semi_transparent_volume_panel">Semi-transparent volume panel</string>
     <string name="reduce_volume_panel_opacity">Reduce volume panel opacity while changing sound volume</string>
-
-<string name="reboot_confirm">Your device will reboot.</string>
+    <string name="reboot_confirm">Your device will reboot.</string>
     <string name="reboot_confirm_recovery">Your device will reboot into recovery.</string>
     <string name="reboot_confirm_bootloader">Your device will reboot into bootloader.</string>
     <string name="action_screenrecord">Screen record</string>
@@ -229,11 +225,9 @@
     <string name="add_screen_record_to_power_menu">Add Screen Record to power menu (Make sure expanded notifications feature is enabled and Busybox installed!)</string>
     <string name="enable4wayreboot">Enable advanced power menu</string>
     <string name="advanced_power_menu">Power menu</string>
-
-<string name="enable_save_and_restore">Enable save and restore</string>
+    <string name="enable_save_and_restore">Enable save and restore</string>
     <string name="enable_the_menu_to_save_and_restore_messages">Enable the menu to save and restore messages from SdCard</string>
-
-<string name="disable_adb_on_secured_lock">Disable Adb on secured lock</string>
+    <string name="disable_adb_on_secured_lock">Disable Adb on secured lock</string>
     <string name="disable_adb_connection_during_secured_lockscreen">Disable Adb connection during secured lockscreen</string>
 
 </resources>
