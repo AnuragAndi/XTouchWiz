@@ -75,7 +75,7 @@ public class XTouchWizActivity extends Activity implements RestoreDialogListener
 
 	private static final String[] defaultSettings = new String[] { "addBrowserTerminateButton",
 			"enableCameraDuringCall", "disableNumberFormating", "enableCallButtonLogs", "disableSmsToMmsConversion",
-			"isXTouvhWizFirstLaunch", "expandNotifications", "makeMeTooLegit", "disableTIMA", "showDataUsuage",
+			"isXTouchWizFirstLaunch", "expandNotifications", "makeMeTooLegit", "disableTIMA", "showDataUsuage",
 			"autoExpandVolumePanel", "semiTransparentVolumePanel", "enable4WayReboot", "mScreenshot", "mScreenrecord",
 			"disableLoudVolumeWarning" };
 
@@ -584,7 +584,7 @@ public class XTouchWizActivity extends Activity implements RestoreDialogListener
 						}
 						new CopyCSCTask().execute(mContext);
 
-						if (!MainApplication.getSharedPreferences().getBoolean("isXTouvhWizFirstLaunch", false)) {
+						if (!MainApplication.getSharedPreferences().getBoolean("isXTouchWizFirstLaunch", false)) {
 							AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 							builder.setCancelable(true).setTitle(R.string.app_name)
 									.setMessage(R.string.wanam_xposed_disclaimer)
@@ -595,7 +595,7 @@ public class XTouchWizActivity extends Activity implements RestoreDialogListener
 											dialog.dismiss();
 										}
 									}).setIcon(android.R.drawable.ic_dialog_alert).create().show();
-							MainApplication.getSharedPreferences().edit().putBoolean("isXTouvhWizFirstLaunch", true)
+							MainApplication.getSharedPreferences().edit().putBoolean("isXTouchWizFirstLaunch", true)
 									.commit();
 						}
 					}
@@ -662,7 +662,7 @@ public class XTouchWizActivity extends Activity implements RestoreDialogListener
 			try {
 				// No reboot notification required
 				String[] litePrefs = new String[] { "appChooserShowAllActivities", "drt", "drt_ts",
-						"isXTouvhWizFirstLaunch", "forceEnglish", "notificationSize", "autoExpandVolumePanel",
+						"isXTouchWizFirstLaunch", "forceEnglish", "notificationSize", "autoExpandVolumePanel",
 						"semiTransparentVolumePanel" };
 				for (String string : litePrefs) {
 					if (key.equalsIgnoreCase(string)) {
