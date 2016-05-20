@@ -4,10 +4,8 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK/ChooserActivity"/>
-	<classpathentry kind="lib" path="D:/PortableApps/ADT/Apps/Bridge/XposedBridgeApi-54.jar"/>
-	<classpathentry kind="lib" path="D:/PortableApps/ADT/Apps/Deps/android.policy_dex2jar.jar"/>
+	<classpathentry kind="lib" path="D:/PortableApps/ADT/Apps/Bridge/api-81.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="D:/PortableApps/ADT/Apps/Bridge/framework2_dex2jar.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
