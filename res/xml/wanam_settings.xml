@@ -219,6 +219,12 @@
                 android:key="mScreenrecord"
                 android:summary="@string/add_screen_record_to_power_menu"
                 android:title="@string/screen_record" />
+        <CheckBoxPreference
+                android:defaultValue="true"
+                android:dependency="enable4WayReboot"
+                android:key="mForceDarkTheme"
+                android:summary="@string/dark_themed_sum"
+                android:title="@string/force_dark_themed" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/system" >
             <CheckBoxPreference

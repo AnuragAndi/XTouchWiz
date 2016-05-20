@@ -138,9 +138,11 @@ public class XGlobalActions {
 
 			// Force Material theme, Samsung did some regression on the default
 			// (old) power menu theme
-			XposedHelpers.findAndHookMethod(CLASS_GLOBAL_ACTIONS + "$GlobalActionsDialog", classLoader,
-					"getDialogTheme", Context.class,
-					XC_MethodReplacement.returnConstant(android.R.style.Theme_Material_Dialog_NoActionBar));
+			if (prefs.getBoolean("mForceDarkTheme", true)) {
+				XposedHelpers.findAndHookMethod(CLASS_GLOBAL_ACTIONS + "$GlobalActionsDialog", classLoader,
+						"getDialogTheme", Context.class,
+						XC_MethodReplacement.returnConstant(android.R.style.Theme_Material_Dialog_NoActionBar));
+			}
 
 			XposedHelpers.findAndHookMethod(globalActionsClass, "createDialog", new XC_MethodHook() {
 
