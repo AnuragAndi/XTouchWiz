@@ -70,6 +70,7 @@ public class XInCallUIPackage {
 	private static void enableAutoCallRecording() {
 		try {
 			final Class<?> mCallList = XposedHelpers.findClass(Packages.INCALLUI + ".CallList", classLoader);
+			final Class<?> mStateClass = XposedHelpers.findClass(Packages.INCALLUI + ".Call.State", classLoader);
 
 			XposedHelpers.findAndHookMethod(Packages.INCALLUI + ".InCallPresenter", classLoader,
 					"processOnCallListChange", mCallList, new XC_MethodHook() {
@@ -86,19 +87,44 @@ public class XInCallUIPackage {
 								if (mCall != null) {
 									int mState = (Integer) XposedHelpers.callMethod(mCall, "getState");
 
-									if (mIsRecording && mState != 3) {// Recording
-																		// on
-																		// an
-																		// Inactive
-																		// Call
-										XposedHelpers.callMethod(mRecorderMgr, "toggleRecord");
-									} else if (!mIsRecording && mState == 3) { // Not
-																				// recording
-																				// on
-																				// an
-																				// Active
-																				// Call
-										XposedHelpers.callMethod(mRecorderMgr, "toggleRecord");
+									try {
+										String sState = (String) XposedHelpers.callStaticMethod(mStateClass,
+												"toString", mState);
+
+										if ((mIsRecording && !sState.equals("ACTIVE"))
+										// Recording
+										// on
+										// an
+										// Inactive
+										// Call
+												|| (!mIsRecording && sState.equals("ACTIVE"))
+										// Not
+										// recording
+										// on
+										// an
+										// Active
+										// Call
+										) {
+											XposedHelpers.callMethod(mRecorderMgr, "toggleRecord");
+										}
+									} catch (Throwable e) {
+										// try old implementation
+										if ((mIsRecording && mState != 2)
+										// Recording
+										// on
+										// an
+										// Inactive
+										// Call
+												|| (!mIsRecording && mState == 2)
+										// Not
+										// recording
+										// on
+										// an
+										// Active
+										// Call
+										) {
+											XposedHelpers.callMethod(mRecorderMgr, "toggleRecord");
+										}
 									}
 								}
 
