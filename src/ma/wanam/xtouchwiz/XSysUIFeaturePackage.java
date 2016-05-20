@@ -212,12 +212,21 @@ public class XSysUIFeaturePackage {
 
 	private static void enableQuickUnlock(final XSharedPreferences prefs, ClassLoader classLoader) {
 
-		Class<?> KeyguardAbsKeyInputView = XposedHelpers.findClass("com.android.keyguard.KeyguardAbsKeyInputView",
-				classLoader);
+		Class<?> KeyguardAbsKeyInputView = null;
+		Class<?> PasswordTextView = null;
+		try {
+			KeyguardAbsKeyInputView = XposedHelpers.findClass("com.android.keyguard.KeyguardAbsKeyInputView",
+					classLoader);
+			PasswordTextView = XposedHelpers.findClass("com.android.keyguard.PasswordTextView", classLoader);
+		} catch (Throwable e) {
+			// Try Goodlock implementation
+			KeyguardAbsKeyInputView = XposedHelpers.findClass("com.android.systemui.keyguard.KeyguardAbsKeyInputView",
+					classLoader);
+			PasswordTextView = XposedHelpers.findClass("com.android.systemui.keyguard.PasswordTextView", classLoader);
+		}
+
 		final Method verifyPasswordAndUnlock = XposedHelpers.findMethodExact(KeyguardAbsKeyInputView,
 				"verifyPasswordAndUnlock");
-
-		Class<?> PasswordTextView = XposedHelpers.findClass("com.android.keyguard.PasswordTextView", classLoader);
 
 		XposedHelpers.findAndHookMethod(KeyguardAbsKeyInputView, "onFinishInflate", new XC_MethodHook() {
 			@Override
