@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import de.robv.android.xposed.XC_MethodHook;
@@ -53,7 +54,7 @@ public class XAndroidPackage {
 			try {
 				disableTIMA();
 			} catch (Throwable e) {
-				e.printStackTrace();
+				XposedBridge.log(e.toString());
 			}
 
 		if (prefs.getBoolean("disableLoudVolumeWarning", true)) {
@@ -95,6 +96,20 @@ public class XAndroidPackage {
 			disableHomeWake();
 		}
 
+		if (prefs.getBoolean("disableDVFS", true)) {
+			try {
+				disableTwDvfs();
+			} catch (Throwable e) {
+				XposedBridge.log(e);
+			}
+		} else if (prefs.getString("disableDVFSWhiteList", "").length() > 0) {
+			try {
+				disableDVFSWhiteList();
+			} catch (Throwable e) {
+				XposedBridge.log(e);
+			}
+		}
+
 	}
 
 	private static void disableTIMA() {
@@ -116,6 +131,78 @@ public class XAndroidPackage {
 				}
 			}
 		});
+	}
+
+	private static void disableTwDvfs() {
+
+		final Class<?> mCustomFrequencyManager = XposedHelpers.findClass(Packages.ANDROID
+				+ ".os.CustomFrequencyManager", classLoader);
+
+		try {
+			XposedHelpers.findAndHookMethod(mCustomFrequencyManager, "newFrequencyRequest", int.class, int.class,
+					long.class, String.class, Context.class, new XC_MethodHook() {
+						@Override
+						protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+							if (mContext == null) {
+								mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+							}
+							if (mContext != null) {
+								PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+								if (!pm.isPowerSaveMode()) {
+									param.setResult(null);
+								}
+							}
+						}
+					});
+		} catch (Throwable e) {
+			XposedBridge.log(e);
+		}
+
+	}
+
+	private static void disableDVFSWhiteList() {
+
+		final Class<?> mCustomFrequencyManager = XposedHelpers.findClass(Packages.ANDROID
+				+ ".os.CustomFrequencyManager", classLoader);
+
+		try {
+			XposedHelpers.findAndHookMethod(mCustomFrequencyManager, "newFrequencyRequest", int.class, int.class,
+					long.class, String.class, Context.class, new XC_MethodHook() {
+
+						@Override
+						protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+							try {
+
+								String pkg = null;
+								if (mContext == null) {
+									mContext = (Context) param.args[4];
+								}
+
+								if (mContext != null) {
+									PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+									if (!pm.isPowerSaveMode()) {
+										@SuppressWarnings("deprecation")
+										List<RunningTaskInfo> list = ((ActivityManager) mContext
+												.getSystemService(Context.ACTIVITY_SERVICE)).getRunningTasks(1);
+										if (list != null && list.size() > 0) {
+											pkg = list.get(0).topActivity.getPackageName();
+										}
+
+										if (pkg != null && prefs.getString("enableDVFSBlackList", "").contains(pkg)) {
+											param.setResult(null);
+											return;
+										}
+									}
+								}
+							} catch (Throwable e) {
+								XposedBridge.log(e);
+							}
+						}
+					});
+		} catch (Throwable e) {
+			XposedBridge.log(e);
+		}
+
 	}
 
 	private static void disableCameraShutterSound() {

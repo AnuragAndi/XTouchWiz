@@ -333,6 +333,20 @@
                 android:summary="@string/long_back_app_white_liste_sumary"
                 android:title="@string/long_back_app_white_liste" />
         </PreferenceCategory>
+        <PreferenceCategory android:title="@string/touchwiz_dvfs" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:disableDependentsState="true"
+                android:key="disableDVFS"
+                android:summary="@string/disable_dynamic_voltage_and_frequency_scaling"
+                android:title="@string/disable_touchwiz_dvfs" />
+
+            <Preference
+                android:dependency="disableDVFS"
+                android:key="disableDVFSWhiteList"
+                android:summary="@string/select_applications_which_should_keep_dvfs_disabled"
+                android:title="@string/set_dvfs_diabler_blacklist" />
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
         android:icon="@drawable/phone"
