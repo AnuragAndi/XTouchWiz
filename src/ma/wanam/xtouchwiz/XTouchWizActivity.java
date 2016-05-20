@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ma.wanam.xtouchwiz.dialogs.CreditsDialog;
+import ma.wanam.xtouchwiz.dialogs.DVFSBlackListDialog;
 import ma.wanam.xtouchwiz.dialogs.KillWhiteListDialog;
 import ma.wanam.xtouchwiz.dialogs.MultiWindowAppsDialog;
 import ma.wanam.xtouchwiz.dialogs.RestoreDialog;
@@ -445,6 +446,14 @@ public class XTouchWizActivity extends Activity implements RestoreDialogListener
 					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						new MultiWindowAppsDialog().show(getFragmentManager(), "multiWindowApps");
+						return true;
+					}
+				});
+				
+				findPreference("disableDVFSWhiteList").setOnPreferenceClickListener(new OnPreferenceClickListener() {
+					@Override
+					public boolean onPreferenceClick(Preference preference) {
+						new DVFSBlackListDialog().show(getFragmentManager(), "DVFSWhiteList");
 						return true;
 					}
 				});
